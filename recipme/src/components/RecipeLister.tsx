@@ -14,13 +14,15 @@ export default function RecipeLister(props: { meals: MealRoot }) {
         {currentMeals?.meals.map((meal, index) => (
           <div
             key={index}
-            className="w-52 h-52 flex flex-col bg-black rounded-3xl bg-opacity-[3%]"
+            className="w-52 h-auto flex flex-col bg-black rounded-3xl bg-opacity-[3%]"
           >
             <img
               src={meal.strMealThumb}
               className="w-full h-full rounded-2xl"
             ></img>
-            <p className="text-gray-600 text-center p-1">{meal.strMeal}</p>
+            <p className="text-gray-600 text-center p-1 font-bold">
+              {meal.strMeal}
+            </p>
           </div>
         ))}
       </div>

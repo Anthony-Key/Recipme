@@ -27,13 +27,8 @@ const Wrapper = ({ children, title }: WrapperProps) => {
   return (
     <div>
       <Head>
-        <title>
-          Anthony Key | Software Engineer, Unity Developer Portfolio
-        </title>
-        <meta
-          name="description"
-          content="A Software Developer with 6 years of professional experience. Looking for Unity Contract / Permanent opportunities! Get in touch!"
-        />
+        <title>Recipeme - Best Recipes Around</title>
+        <meta name="description" content="The best recipes around!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
