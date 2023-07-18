@@ -13,12 +13,24 @@ const dance = Dancing_Script({
 export default function Home() {
   const [meals, setMeals] = useState<MealRoot>({ meals: [] });
   const url = "https://akportfolioapi.azurewebsites.net/Recipe";
+  const [currentSearch, setSearch] = useState<string>("");
+
   useEffect(() => {
     axios.get<MealRoot>(url).then((response) => {
       const data = response.data;
       setMeals(data);
     });
   }, []);
+
+  const search = (key: string, term: string) => {
+    if (key === "Enter") {
+      axios.get<MealRoot>(`${url}/${term}`).then((response) => {
+        const data = response.data;
+        setMeals(data);
+      });
+    }
+  };
+
   return (
     <>
       <div className="bg-gradient-to-r from-rose-100 to-teal-100 w-full h-full">
@@ -35,6 +47,12 @@ export default function Home() {
               id="input-group-1"
               className=" text-gray-900 text-lg rounded-full block w-full text-center p-2.5 placeholder:text-lg"
               placeholder="Search"
+              onKeyUp={(input) => {
+                search(input.key, currentSearch);
+              }}
+              onChange={(input) => {
+                setSearch(input.target.value);
+              }}
             />
             <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
               <svg
