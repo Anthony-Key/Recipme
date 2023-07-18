@@ -12,10 +12,7 @@ export default function RecipeLister(props: { meals: MealRoot }) {
     <>
       <div className="grid grid-cols-5 gap-10">
         {currentMeals?.meals.map((meal, index) => (
-          <div
-            key={index}
-            className="w-52 h-auto flex flex-col bg-black rounded-3xl bg-opacity-[3%]"
-          >
+          <div key={index} className="w-52 h-auto flex flex-col  rounded-3xl ">
             <img
               src={meal.strMealThumb}
               className="w-full h-full rounded-2xl"
