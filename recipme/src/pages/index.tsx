@@ -1,6 +1,9 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { Dancing_Script } from "@next/font/google";
+import RecipeLister from "@/components/RecipeLister";
+import { MealRoot } from "@/components/types/RecipeTypes";
+import axios from "axios";
 
 const dance = Dancing_Script({
   subsets: ["latin"],
@@ -8,10 +11,17 @@ const dance = Dancing_Script({
 });
 
 export default function Home() {
-  useEffect(() => {}, []);
+  const [meals, setMeals] = useState<MealRoot>({ meals: [] });
+  const url = "https://akportfolioapi.azurewebsites.net/Recipe";
+  useEffect(() => {
+    axios.get<MealRoot>(url).then((response) => {
+      const data = response.data;
+      setMeals(data);
+    });
+  }, []);
   return (
     <>
-      <div className="bg-gradient-to-r from-rose-100 to-teal-100 w-screen h-screen">
+      <div className="bg-gradient-to-r from-rose-100 to-teal-100 w-full h-full">
         <div className="flex items-center justify-center flex-col">
           <h1
             className={`${dance.className} text-8xl text-white font-semibold bg-emerald-600 bg-opacity-20 rounded-xl p-4 mt-[5%] mb-10`}
@@ -43,6 +53,7 @@ export default function Home() {
               </svg>
             </div>
           </div>
+          <RecipeLister meals={meals} />
         </div>
       </div>
     </>
